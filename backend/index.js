@@ -5,15 +5,12 @@ import studentRoutes from './routes/studentRoutes.js';
 import cors from 'cors'
 
 const app= express();
+connectDB()
 dotenv.config();
-
-const PORT=process.env.PORT || 3008
 
 app.use(cors());
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
 app.use('/api/students',studentRoutes);
 
-app.listen(PORT,()=>{
-    connectDB()
-    console.log('Server Started at http://localhost:'+PORT)
-})
+export default app;
